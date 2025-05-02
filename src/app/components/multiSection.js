@@ -8,12 +8,20 @@ export default function MultiSection() {
 
     const [loading, setLoading] = useState(true)
 
+    const updateWindowSize = () => {
+        setPageWidth(window.innerWidth / 3)
+        setPageHeight(window.innerHeight / 3)
+    }
 
     useEffect(() => {
         if (typeof window !== "undefined") {
-            setPageWidth(window.innerWidth / 4)
-            setPageHeight(window.innerWidth / 4)
+            updateWindowSize()
             setLoading(false)
+
+            window.addEventListener('resize', updateWindowSize)
+
+            // Cleanup event listen if component is unmounted
+            return () => window.removeEventListener('resize', updateWindowSize)
         }
     }, [])
 
