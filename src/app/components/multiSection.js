@@ -1,5 +1,5 @@
+import { useState, useEffect, useRef } from 'react'
 import Section from './section'
-import { useState, useEffect } from 'react'
 
 export default function MultiSection() {
     const [selectedSection, setSelectedSection] = useState()
@@ -9,40 +9,44 @@ export default function MultiSection() {
     const [loading, setLoading] = useState(true)
 
     const updateWindowSize = () => {
-        setPageWidth(window.innerWidth / 3)
-        setPageHeight(window.innerHeight / 3)
+        setPageWidth(window.innerWidth / 2)
+        setPageHeight(window.innerHeight / 2)
     }
 
     useEffect(() => {
-        if (typeof window !== "undefined") {
+        // Check if window is defined
+        if (typeof window !== 'undefined') {
             updateWindowSize()
             setLoading(false)
 
+            // Add resize event listener
             window.addEventListener('resize', updateWindowSize)
 
-            // Cleanup event listen if component is unmounted
+            // Cleanup event listener when component unmounts
             return () => window.removeEventListener('resize', updateWindowSize)
         }
-    }, [])
-
-
+    }, []) // Empty dependency array means this effect runs only once on mount
 
     return (
         <>
-        {loading ? (<div className="flex justify-center items-center">
-                    <div className="spinner-border animate-spin rounded-full border-4 border-t-4 border-gray-300 w-16 h-16"></div>
-                </div>) 
-                : 
-                (<div style={{
-            height: pageHeight,
-            width: pageWidth
-        }} className={`grid grid-flow-col grid-rows-2 gap-4`}>
-        <Section />
-        <Section />
-        <Section />
-        <Section />
-        </div>)}
+            
 
+                    <div
+                        style={{
+                            height: pageHeight,
+                            width: pageWidth,
+                            visibility: !loading ? 'visible' : 'hidden'
+                        }}
+                        className={`grid grid-flow-col grid-rows-2 gap-4`}
+                    >
+                        <Section />
+                        <Section />
+                        <Section />
+                        <Section />
+                    </div>
+            
         </>
     )
 }
+
+

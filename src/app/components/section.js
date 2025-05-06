@@ -1,10 +1,19 @@
-export default function section() {
+import { motion } from "framer-motion";
 
-    return (
-    <div className="rounded-4xl border-white border-4 content-center">
-        <p className="text-center">
-            Projects
-        </p>
-    </div>
-    )
+export default function Section() {
+  return (
+    <motion.div
+      drag
+      dragConstraints={{ left: -100, top: -100, right: 300, bottom: 100 }} 
+      style={{
+        width: "100px",
+        height: "100px",
+        backgroundColor: "#ff0088",
+        borderRadius: "10px",
+        cursor: "grab",
+      }}
+    >
+      
+    </motion.div>
+  );
 }
