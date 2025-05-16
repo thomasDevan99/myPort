@@ -37,12 +37,12 @@ export default function MultiSection() {
                             width: pageWidth,
                             visibility: !loading ? 'visible' : 'hidden'
                         }}
-                        className={`grid grid-flow-col grid-rows-2 gap-4`}
+                        className={`grid grid-flow-col grid-rows-2 gap-4 justify-items-center`}
                     >
-                        <Section />
-                        <Section />
-                        <Section />
-                        <Section />
+                        <Section name={"Projects"} />
+                        <Section name={"Work"} />
+                        <Section name={"Games"} />
+                        <Section name={"Contact"} />
                     </div>
             
         </>

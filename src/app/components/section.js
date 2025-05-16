@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-export default function Section() {
+export default function Section({ name }) {
   return (
     <motion.div
       drag
